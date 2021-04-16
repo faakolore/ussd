@@ -27,7 +27,7 @@ class Session extends AbstractSession
     }
 
     /**
-     * @return MorphMany
+     * @return MorphMany|mixed
      */
     public function orders(): MorphMany
     {
