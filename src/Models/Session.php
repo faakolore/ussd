@@ -2,6 +2,9 @@
 
 namespace TNM\USSD\Models;
 
+use App\Models\OrderRequest;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 class Session extends AbstractSession
 {
 
@@ -21,5 +24,15 @@ class Session extends AbstractSession
     {
         $this->update(['session_id' => $sessionId]);
         return $this;
+    }
+
+    /**
+     * @return MorphMany
+     */
+    public function orders(): MorphMany
+    {
+        if (class_exists(OrderRequest)){
+            return $this->morphMany(OrderRequest::class,'userable');
+        }
     }
 }

@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Faakolore\\USSD\\" : "src/"
+            "TNM\\USSD\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Faakolore\\USSD\\Test\\": "tests"
+            "TNM\\USSD\\Test\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Faakolore\\USSD\\UssdServiceProvider"
+                "TNM\\USSD\\UssdServiceProvider"
             ]
         }
     }

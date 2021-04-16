@@ -9,6 +9,8 @@ abstract class AbstractSession extends Model
 {
     protected $guarded = [];
 
+    protected $table = 'ussd_sessions';
+
     public static function findBySessionId(string $session): Session
     {
         return static::where('session_id', $session)->firstOrFail();

@@ -2,7 +2,7 @@
 
 namespace TNM\USSD;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as Provider;
 use TNM\USSD\Commands\AuditSession;
 use TNM\USSD\Commands\CleanUp;
 use TNM\USSD\Commands\Install;
@@ -20,13 +20,17 @@ use TNM\USSD\Observers\SessionNumberObserver;
 use TNM\USSD\Observers\SessionObserver;
 use TNM\USSD\Observers\TransactionTrailObserver;
 
-class UssdServiceProvider extends ServiceProvider
+class UssdServiceProvider extends Provider
 {
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        //$this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadTranslationsFrom(__DIR__ . '/translations', 'ussd');
+
+        $this->publishes([
+            __DIR__.'/database/migrations/' => database_path('migrations')
+        ], 'migrations');
 
         $this->publishes([
             __DIR__ . '/translations' => resource_path('lang/vendor/ussd'),
