@@ -31,8 +31,6 @@ class Session extends AbstractSession
      */
     public function orders(): MorphMany
     {
-        if (class_exists(OrderRequest)){
-            return $this->morphMany(OrderRequest::class,'userable');
-        }
+        return $this->morphMany(OrderRequest::class,'userable');
     }
 }

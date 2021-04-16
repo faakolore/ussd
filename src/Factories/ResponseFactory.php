@@ -16,6 +16,8 @@ class ResponseFactory
         switch (request()->route('adapter')) {
             case 'flares':
                 return resolve(FlaresResponse::class);
+            case 'hubtel':
+                return resolve(HubtelResponse::class);
             default:
                 return resolve(TruRouteResponse::class);
         }
