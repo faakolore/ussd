@@ -32,7 +32,7 @@ channel to your API. The interface is open and documentated for implementation w
 ## Installation
 
 ```
-composer require tnmdev/ussd
+composer require faakolore/ussd
 ```
 
 
