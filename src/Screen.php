@@ -15,7 +15,7 @@ use TNM\USSD\Screens\Welcome;
 abstract class Screen
 {
     const PREVIOUS = '#';
-    const HOME = '00';
+    const HOME = '*';
     /**
      * USSD Request object
      *
