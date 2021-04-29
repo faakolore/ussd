@@ -38,29 +38,61 @@ class HubtelRequest implements UssdRequestInterface
      */
     private $request;
 
-
-
-
-//$clientState = null;
-//if (array_key_exists('ClientState', $arr)) {
-//$clientState = $arr['ClientState'];
-//}
-//
-//$mobile = $arr['Mobile'];
-//$sessionId = $arr['SessionId'];
-//$serviceCode = $arr['ServiceCode'];
-//$type = $arr['Type'];
-//$message = $arr['Message'];
-//$operator = $arr['Operator'];
-// $sequence = $arr['Sequence'];
+    /**
+     * @var null |string
+     */
+    protected $mobile;
+    /**
+     * @var null |string
+     */
+    protected $sessionId;
+    /**
+     * @var null |string
+     */
+    protected $serviceCode;
+    /**
+     * @var null |string
+     */
+    protected $type;
+    /**
+     * @var null |string
+     */
+    protected $message;
+    /**
+     * @var null |string
+     */
+    protected $operator;
+    /**
+     * @var null |string
+     */
+    protected $sequence;
+    /**
+     * @var null |string
+     */
+    protected $clientState;
 
     /**
      * HubtelRequest constructor.
+     * @param null[] $options
      */
-    public function __construct()
+    public function __construct($options = ["Mobile"=>null,"SessionId"=>null,"ServiceCode"=>null,"Type"=>null,"Message"=>null,"Operator"=>null,"Sequence"=>null,"ClientState"=>null])
     {
-        $this->request = json_decode(json_encode(simplexml_load_string(request()->getContent())), true);
+        $this->mobile = $options['Mobile'];
+        $this->sessionId = $options['SessionId'];
+        $this->serviceCode = $options['ServiceCode'];
+        $this->type = $options['Type'];
+        $this->message = $options['Message'];
+        $this->operator = $options['Operator'];
+        $this->sequence = $options['Sequence'];
+        $this->clientState = $options['ClientState'];
+        $this->request = json_decode(request()->getContent(),true);
     }
+
+    public static function createInstance($options): HubtelRequest
+    {
+        return new self($options);
+    }
+
 
     /**
      * @return string
@@ -87,6 +119,14 @@ class HubtelRequest implements UssdRequestInterface
     }
 
     /**
+     * @param $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @return string
      */
     public function getMessage(): string
@@ -108,7 +148,7 @@ class HubtelRequest implements UssdRequestInterface
      */
     public function getServiceCode()
     {
-        return $this->request['ServiceCOde'];
+        return $this->request['ServiceCode'];
     }
 
     /**
