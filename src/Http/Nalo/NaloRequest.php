@@ -17,7 +17,7 @@ class NaloRequest implements UssdRequestInterface
 
     public function __construct()
     {
-        $this->request = json_decode(json_encode(simplexml_load_string(request()->getContent())), true);
+        $this->request = json_decode(request()->getContent(),true);
     }
 
     public function getMsisdn(): string
@@ -35,11 +35,10 @@ class NaloRequest implements UssdRequestInterface
 
     public function getType(): int
     {
-        return Session::findBySessionId($this->getSession())->exists() ? Request::RESPONSE : Request::INITIAL;
-//        if ($this->request['MSGTYPE']==false){
-//            return
-//        }
-//        return ;
+        if ($this->request['MSGTYPE']==true){
+            return Session::findBySessionId($this->getSession())->exists() ? Request::RESPONSE : Request::INITIAL;
+        }
+        return Request::INITIAL;
     }
 
     public function setType($type)
