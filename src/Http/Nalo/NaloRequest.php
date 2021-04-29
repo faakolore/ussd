@@ -5,17 +5,19 @@ namespace TNM\USSD\Http\Nalo;
 
 
 use Illuminate\Support\Str;
+use TNM\USSD\Http\Request;
 use TNM\USSD\Http\UssdRequestInterface;
+use TNM\USSD\Models\Session;
 
 class NaloRequest implements UssdRequestInterface
 {
 
-    protected $request;
-    protected $type;
+    private $request;
+    private $type;
 
     public function __construct()
     {
-        $this->request = json_decode(request()->getContent(),true);
+        $this->request = json_decode(json_encode(simplexml_load_string(request()->getContent())), true);
     }
 
     public function getMsisdn(): string
@@ -23,9 +25,6 @@ class NaloRequest implements UssdRequestInterface
         return $this->request['MSISDN'];
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getSession(): string
     {
         if (isset($this->request->session)){
@@ -36,7 +35,11 @@ class NaloRequest implements UssdRequestInterface
 
     public function getType(): int
     {
-        return $this->request['MSGTYPE'];
+        return Session::findBySessionId($this->getSession())->exists() ? Request::RESPONSE : Request::INITIAL;
+//        if ($this->request['MSGTYPE']==false){
+//            return
+//        }
+//        return ;
     }
 
     public function setType($type)
