@@ -8,7 +8,7 @@ return [
 
     'hubtel_client_secret' => env('HUBTEL_CLIENT_SECRET',null),
 
-    'nalo_user_id' => env('NALO_USERID','NALOtest'),
+    'nalo_user_id' => env('NALO_USERID','NALOTest'),
 
     //Available Adapters
     // set the adapter the ussd gateway you are using

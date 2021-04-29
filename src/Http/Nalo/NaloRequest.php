@@ -4,6 +4,7 @@
 namespace TNM\USSD\Http\Nalo;
 
 
+use Illuminate\Support\Str;
 use TNM\USSD\Http\UssdRequestInterface;
 
 class NaloRequest implements UssdRequestInterface
@@ -22,9 +23,15 @@ class NaloRequest implements UssdRequestInterface
         return $this->request['MSISDN'];
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getSession(): string
     {
-        return $this->request['USERID'];
+        if (isset($this->request->session)){
+            return $this->request->session;
+        }
+        return Str::random();
     }
 
     public function getType(): int
@@ -39,6 +46,6 @@ class NaloRequest implements UssdRequestInterface
 
     public function getMessage(): string
     {
-        return  $this->request['MSG'] ?: $this->request['USERDATA'];
+        return $this->request['USERDATA'];
     }
 }

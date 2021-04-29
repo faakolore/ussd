@@ -15,7 +15,7 @@ class ResponseFactory
 {
     public function make(): UssdResponseInterface
     {
-        switch (config('ussd.adapter')) {
+        switch (request()->route('adapter')) {
             case 'flares':
                 return resolve(FlaresResponse::class);
             case 'truRoute':
