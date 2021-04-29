@@ -27,22 +27,28 @@ class NaloRequest implements UssdRequestInterface
 
     public function getSession(): string
     {
-        if (isset($this->request->session)){
-            return $this->request->session;
+        if (isset($this->request['nalo_session']) && $this->request['MSGTYPE']==false){
+            return $this->request['nalo_session'];
+        }else{
+            return $this->request['nalo_session'] = Str::slug(now(),'');
         }
-        return Str::random();
     }
 
     public function getType(): int
     {
-        if ($this->request['MSGTYPE']==true){
-            return Session::findBySessionId($this->getSession())->exists() ? Request::RESPONSE : Request::INITIAL;
-        }
-        return Request::INITIAL;
+//            return Session::findBySessionId($this->getSession())->exists() ?
+//                Request::RESPONSE : Request::INITIAL;
+        return $this->setType($this->request['MSGTYPE']);
     }
 
-    public function setType($type)
+    public function setType($type): int
     {
+        switch ($type){
+            case false:
+                return Request::INITIAL;
+            case true:
+                return Request::RESPONSE;
+        }
         $this->type = $type;
     }
 

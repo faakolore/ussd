@@ -8,6 +8,7 @@ use \Illuminate\Http\Response as BaseResponse;
 
 class Response extends BaseResponse
 {
+
     const RESPONSE = 2, RELEASE = 3;
     /**
      * @var string

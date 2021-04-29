@@ -105,7 +105,7 @@ class HubtelResponse implements UssdResponseInterface
             "Type"=>$screen->type(),
             "ClientState"=>null,
             "MaskNextRoute"=>null,
-            "SessionId" => $screen->request->session
+//            "SessionId" => $screen->request->session
         ]);
     }
 }

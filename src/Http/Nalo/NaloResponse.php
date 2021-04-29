@@ -30,7 +30,7 @@ class NaloResponse implements UssdResponseInterface
             "MSISDN"=>$screen->request->msisdn,
             "USERDATA"=>$screen->request->message,
             "MSG"=>$screen->getResponseMessage(),
-            "MSGTYPE"=>$this->type
+            "MSGTYPE"=>$this->type,
         ];
         return json_encode($response);
     }

@@ -11,7 +11,7 @@ class HubtelRequest implements UssdRequestInterface
     /**
      * indicates the first message in a USSD Session
      */
-    const INITIAL = 'Initiation';
+    const INITIATION = 'Initiation';
 
     /**
      * indicates a follow up in an already existing USSD session.
@@ -75,7 +75,16 @@ class HubtelRequest implements UssdRequestInterface
      * HubtelRequest constructor.
      * @param null[] $options
      */
-    public function __construct($options = ["Mobile"=>null,"SessionId"=>null,"ServiceCode"=>null,"Type"=>null,"Message"=>null,"Operator"=>null,"Sequence"=>null,"ClientState"=>null])
+    public function __construct($options = [
+        "Mobile"=>null,
+        "SessionId"=>null,
+        "ServiceCode"=>null,
+        "Type"=>null,
+        "Message"=>null,
+        "Operator"=>null,
+        "Sequence"=>null,
+        "ClientState"=>null]
+    )
     {
         $this->mobile = $options['Mobile'];
         $this->sessionId = $options['SessionId'];
@@ -115,15 +124,23 @@ class HubtelRequest implements UssdRequestInterface
      */
     public function getType(): int
     {
-        return $this->request['Type'];
+        return $this->setType($this->request['Type']);
     }
 
     /**
      * @param $type
+     * @return int
      */
-    public function setType($type)
+    public function setType($type): int
     {
-        $this->type = $type;
+        switch ($type){
+            case self::INITIATION:
+                return 1;
+            case self::RESPONSE:
+                return 2;
+            case self::RELEASE:
+                return 3;
+        }
     }
 
     /**
