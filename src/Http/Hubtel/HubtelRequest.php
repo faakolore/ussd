@@ -38,68 +38,13 @@ class HubtelRequest implements UssdRequestInterface
      */
     private $request;
 
-    /**
-     * @var null |string
-     */
-    protected $mobile;
-    /**
-     * @var null |string
-     */
-    protected $sessionId;
-    /**
-     * @var null |string
-     */
-    protected $serviceCode;
-    /**
-     * @var null |string
-     */
-    protected $type;
-    /**
-     * @var null |string
-     */
-    protected $message;
-    /**
-     * @var null |string
-     */
-    protected $operator;
-    /**
-     * @var null |string
-     */
-    protected $sequence;
-    /**
-     * @var null |string
-     */
-    protected $clientState;
 
     /**
      * HubtelRequest constructor.
-     * @param null[] $options
      */
-    public function __construct(array $options = [
-        "Mobile"=>null,
-        "SessionId"=>null,
-        "ServiceCode"=>null,
-        "Type"=>null,
-        "Message"=>null,
-        "Operator"=>null,
-        "Sequence"=>null,
-        "ClientState"=>null]
-    )
+    public function __construct()
     {
-        $this->mobile = $options['Mobile'];
-        $this->sessionId = $options['SessionId'];
-        $this->serviceCode = $options['ServiceCode'];
-        $this->type = $options['Type'];
-        $this->message = $options['Message'];
-        $this->operator = $options['Operator'];
-        $this->sequence = $options['Sequence'];
-        $this->clientState = $options['ClientState'];
         $this->request = json_decode(request()->getContent(),true);
-    }
-
-    public static function createInstance($options): HubtelRequest
-    {
-        return new self($options);
     }
 
 
@@ -152,7 +97,7 @@ class HubtelRequest implements UssdRequestInterface
      */
     public function getMessage(): string
     {
-        return $this->request['Message'];
+        return $this->request['Message']?:$this->getSequence();
     }
 
 
@@ -182,6 +127,6 @@ class HubtelRequest implements UssdRequestInterface
 
     public function getSequence()
     {
-        return $this->request['Sequence'];
+        return $this->request['sequence'];
     }
 }
