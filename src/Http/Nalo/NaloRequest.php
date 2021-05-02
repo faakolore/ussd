@@ -27,9 +27,9 @@ class NaloRequest implements UssdRequestInterface
 
     public function getSession(): string
     {
-        if (request()->session()->has('NALOSESSION') && $this->request['MSGTYPE']==false){
+        if (request()->session()->exists('NALOSESSION') && $this->request['MSGTYPE']==false){
             return request()->session()->get('NALOSESSION');
-        }elseif (request()->session()->has('NALOSESSION')){
+        }elseif (request()->session()->exists('NALOSESSION')){
             return request()->session()->get('NALOSESSION');
         }
         else{
@@ -39,9 +39,8 @@ class NaloRequest implements UssdRequestInterface
 
     public function getType(): int
     {
-//            return Session::findBySessionId($this->getSession())->exists() ?
-//                Request::RESPONSE : Request::INITIAL;
-        return $this->setType($this->request['MSGTYPE']);
+            return Session::findBySessionId($this->getSession())->exists() ?
+              : $this->setType($this->request['MSGTYPE']);
     }
 
     public function setType($type): int
