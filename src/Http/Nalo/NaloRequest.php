@@ -27,10 +27,10 @@ class NaloRequest implements UssdRequestInterface
 
     public function getSession(): string
     {
-        if ($this->request->session()->has('NALOSESSION') && $this->request['MSGTYPE']==false){
-            return $this->request->session()->get('NALOSESSION');
+        if (request()->session()->has('NALOSESSION') && $this->request['MSGTYPE']==false){
+            return request()->session()->get('NALOSESSION');
         }else{
-            return $this->request->session()->put('NALOSESSION', Str::slug(now(),''));
+            request()->session()->put('NALOSESSION', Str::slug(now(),''));
         }
     }
 
