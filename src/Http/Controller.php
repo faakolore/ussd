@@ -16,8 +16,8 @@ class Controller extends BaseController
      */
     public function __invoke(Request $request)
     {
-        if ($request->invalid() || $request->invalidJson()){
-            throw new UssdException($request, 'The system could not process your request. Please try again later');
+        if ($request->isJson()){
+            throw new UssdException($request, 'Whoops! The system could not process your request. Please try again later');
         }
         else{
             return (new EntryScreenFactory($request))->make();

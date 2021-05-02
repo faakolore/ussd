@@ -20,7 +20,7 @@ class UssdException extends \Exception
         $this->request = $request;
     }
 
-    public function render()
+    public function render(): string
     {
         return (new Error($this->request, $this->getMessage()))->render();
     }

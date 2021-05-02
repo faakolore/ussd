@@ -12,7 +12,7 @@ class ValidationException extends UssdException
      */
     protected $request;
 
-    public function render()
+    public function render():string
     {
         return (new ValidationFailure($this->request, $this->getMessage()))->render();
     }

@@ -21,6 +21,8 @@ class RequestFactory
                 return resolve(TruRouteRequest::class);
             case 'nalo':
                 return resolve(NaloRequest::class);
+//           case 'hubtel':
+//                return resolve(HubtelRequest::class);
             default:
                 return resolve(HubtelRequest::class);
 
