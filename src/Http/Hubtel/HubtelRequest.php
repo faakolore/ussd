@@ -75,7 +75,7 @@ class HubtelRequest implements UssdRequestInterface
      * HubtelRequest constructor.
      * @param null[] $options
      */
-    public function __construct($options = [
+    public function __construct(array $options = [
         "Mobile"=>null,
         "SessionId"=>null,
         "ServiceCode"=>null,
@@ -140,6 +140,10 @@ class HubtelRequest implements UssdRequestInterface
                 return 2;
             case self::RELEASE:
                 return 3;
+            case self::TIMEOUT:
+                return 4;
+            default:
+                return 0;
         }
     }
 

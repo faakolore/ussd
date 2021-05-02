@@ -31,6 +31,7 @@ class NaloResponse implements UssdResponseInterface
             "USERDATA"=>$screen->request->message,
             "MSG"=>$screen->getResponseMessage(),
             "MSGTYPE"=>$this->type,
+            "NALOSESSION"=>$screen->request->getSession(),
         ];
         return json_encode($response);
     }

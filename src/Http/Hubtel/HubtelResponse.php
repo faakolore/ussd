@@ -9,22 +9,6 @@ use TNM\USSD\Screen;
 class HubtelResponse implements UssdResponseInterface
 {
 
-    /**
-     * RESPONSE TYPES:
-     */
-    /**
-     * indicates that the application is ending the USSD session.
-     */
-    const RELEASE = 'Release';
-
-    /**
-     * indicates a response in an already existing USSD session.
-     */
-    const RESPONSE = 'Response';
-
-
-
-
     protected $message;
     protected $type;
     protected $clientState;
@@ -43,69 +27,117 @@ class HubtelResponse implements UssdResponseInterface
         return new self($message, $type, $clientState, $maskNextRoute);
     }
 
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    public function setMessage($message)
-    {
-        $this->message = $message;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function getClientState()
-    {
-        return $this->clientState;
-    }
-
-    public function setClientState($clientState)
-    {
-        $this->clientState = $clientState;
-    }
-
-    public function getMaskNextRoute()
-    {
-        return $this->maskNextRoute;
-    }
-
-    public function setMaskNextRoute($maskNextRoute)
-    {
-        $this->maskNextRoute = $maskNextRoute;
-    }
-
-    public function toJson()
-    {
-        return json_encode(["Message"=>$this->message,"Type"=>$this->type,"ClientState"=>$this->clientState,"MaskNextRoute"=>$this->maskNextRoute]);
-    }
-
-    public function toArray(): array
-    {
-        return ["Message"=>$this->message,"Type"=>$this->type,"ClientState"=>$this->clientState,"MaskNextRoute"=>$this->maskNextRoute];
-    }
-
-
     /**
      * @param Screen $screen
      * @return string
      */
     public function respond(Screen $screen): string
     {
+        return $this->toJson($screen);
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @param $message
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getClientState()
+    {
+        return $this->clientState;
+    }
+
+    /**
+     * @param $clientState
+     */
+    public function setClientState($clientState)
+    {
+        $this->clientState = $clientState;
+    }
+
+    /**
+     * @return false|mixed
+     */
+    public function getMaskNextRoute()
+    {
+        return $this->maskNextRoute;
+    }
+
+    /**
+     * @param $maskNextRoute
+     */
+    public function setMaskNextRoute($maskNextRoute)
+    {
+        $this->maskNextRoute = $maskNextRoute;
+    }
+
+    /**
+     * @param Screen $screen
+     * @return false|string
+     */
+    public function toJson(Screen $screen)
+    {
         return json_encode([
             "Message"=>$screen->getResponseMessage(),
-            "Type"=>$screen->type(),
-            "ClientState"=>null,
-            "MaskNextRoute"=>null,
+            "Type"=>$this->setType($screen->type()),
+            "ClientState"=>$this->clientState,
+            "MaskNextRoute"=>$this->maskNextRoute,
 //            "SessionId" => $screen->request->session
         ]);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return [
+            "Message"=>$this->message,
+            "Type"=>$this->type,
+            "ClientState"=>$this->clientState,
+            "MaskNextRoute"=>$this->maskNextRoute
+        ];
+    }
+
+    /**
+     * @param $type
+     * @return string
+     */
+    public function setType($type): string
+    {
+        switch ($type){
+            case 1:
+                return HubtelRequest::INITIATION;
+            case 2:
+                return HubtelRequest::RESPONSE;
+            case 3:
+                return HubtelRequest::RELEASE;
+            case 4:
+                return HubtelRequest::TIMEOUT;
+            default:
+                return '';
+        }
+    }
+
 }
