@@ -29,12 +29,14 @@ class Request extends BaseRequest
      */
     private $valid = false;
 
+    private $validJson = false;
+
     public function __construct()
     {
         parent::__construct();
         $this->setProperties((new RequestFactory())->make());
 
-        if ($this->invalid()) return;
+        if ($this->invalidJson()) return;
 
         $this->setSessionLocale();
         $this->trail = $this->getTrail();
@@ -55,15 +57,20 @@ class Request extends BaseRequest
     {
         return !$this->valid;
     }
+    public function invalidJson():bool
+    {
+        return !$this->validJson;
+    }
 
     private function setValid(UssdRequestInterface $request): void
     {
         if (!$request) {
-            $this->valid = false;
+//            $this->valid = false;
+            $this->validJson = false;
             return;
         }
 
-        $this->valid = !empty($request->getMsisdn()) &&
+        $this->validJson = !empty($request->getMsisdn()) &&
             !empty($request->getSession()) &&
             !empty($request->getType()) &&
             !empty($request->getMessage());
@@ -73,7 +80,7 @@ class Request extends BaseRequest
     {
         $this->setValid($request);
 
-        if ($this->valid) {
+        if ($this->validJson) {
             $this->msisdn = $request->getMsisdn();
             $this->session = $request->getSession();
             $this->type = $request->getType();
