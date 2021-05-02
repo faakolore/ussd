@@ -3,6 +3,7 @@
 
 namespace TNM\USSD\Http\Hubtel;
 
+use TNM\USSD\Http\Request;
 use TNM\USSD\Http\UssdRequestInterface;
 
 
@@ -80,13 +81,13 @@ class HubtelRequest implements UssdRequestInterface
     {
         switch ($type){
             case self::INITIATION:
-                return 1;
+                return Request::INITIAL;
             case self::RESPONSE:
-                return 2;
+                return Request::RESPONSE;
             case self::RELEASE:
-                return 3;
+                return Request::RELEASE;
             case self::TIMEOUT:
-                return 4;
+                return Request::TIMEOUT;
             default:
                 return 0;
         }
@@ -97,7 +98,7 @@ class HubtelRequest implements UssdRequestInterface
      */
     public function getMessage(): string
     {
-        return $this->request['Message']?:$this->getSequence();
+        return $this->getType()==Request::INITIAL? $this->getSequence(): $this->request['Message'];
     }
 
 

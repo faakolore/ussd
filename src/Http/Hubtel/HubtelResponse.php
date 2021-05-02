@@ -3,6 +3,7 @@
 
 namespace TNM\USSD\Http\Hubtel;
 
+use TNM\USSD\Http\Request;
 use TNM\USSD\Http\UssdResponseInterface;
 use TNM\USSD\Screen;
 
@@ -127,13 +128,13 @@ class HubtelResponse implements UssdResponseInterface
     public function setType($type): string
     {
         switch ($type){
-            case 1:
+            case Request::INITIAL:
                 return HubtelRequest::INITIATION;
-            case 2:
+            case Request::RESPONSE:
                 return HubtelRequest::RESPONSE;
-            case 3:
+            case Request::RELEASE:
                 return HubtelRequest::RELEASE;
-            case 4:
+            case Request::TIMEOUT:
                 return HubtelRequest::TIMEOUT;
             default:
                 return '';
