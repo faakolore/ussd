@@ -1,6 +1,6 @@
 # TNM USSD Adapter
 
-This package creates an adapter, boilerplate code and functionality that lets you interact with USSDC and offer USSD 
+This package creates an adapter, boilerplate code and functionality that lets you interact with USSD and offer USSD 
 channel to your API. The interface is open and documentated for implementation with various USSD interfaces. 
 
   * [Installation](#installation)
@@ -59,7 +59,7 @@ request details, and encoding USSD response.
 
 `Screen` has `$request` as a public property. This is an object of `TNM\USSD\Http\Request` class.
 
-The request class exposes four properties from the xml request passed on by USSDC. 
+The request class exposes four properties from the xml/json request passed on by USSD. 
 
 | Property | Description |
 | ---------| ------------- |
@@ -190,15 +190,15 @@ class EnterPhoneNumber extends Screen
 
     protected function rules() : string
     {
-        return 'regex:/(088)[0-9]{7}/';
+        return 'numeric|regex:/(088)[0-9]{7}/';
     }
 }      
 ```
 
 ### Extending for Multiple Implementations
 
-This adapter was designed with extendability in mind. Right now it supports TruRoute and Flares USSD interfaces used by 
-TNM and Airtel Malawi respectively. However, with the pluggable interface, it can be extended to support any mobile 
+This adapter was designed with extendability in mind. Right now it supports Hubtel, NaloSolutions, TruRoute and Flares USSD interfaces used by 
+Hubtel Ghana, Nalo Solutions Ghana, TNM and Airtel Malawi respectively. However, with the pluggable interface, it can be extended to support any mobile 
 network operator.
 
 To extend, create a request and response class. These classes must implement the `TNM\USSD\Http\UssdRequestInterface` 
@@ -261,7 +261,7 @@ class TruRouteResponse implements UssdResponseInterface
 #### Routing
 You can distinguish requests from different mobile operators using a route parameter `adapter`.   
 
-All requests from a network that uses `Flares` adapter should be routed to `api/ussd/flares`. So when you create your 
+All requests from a network that uses `Hubtel` adapter should be routed to `api/ussd/hubtel`. So when you create your 
 own extension, the route for the operator should be `api/ussd/{adapter}`. 
 
 This is not resolved magically. You are required to define the implementation in `TNM\USSD\Factories\RequestFactory` and 
@@ -278,6 +278,10 @@ class RequestFactory
         switch (request()->route('adapter')) {
             case 'flares' :
                 return resolve(FlaresRequest::class);
+            case 'nalo':
+                return resolve(NaloRequest::class);
+           case 'hubtel':
+                return resolve(HubtelRequest::class);
             default:
                 return resolve(TruRouteRequest::class);
         }
@@ -295,6 +299,10 @@ class ResponseFactory
         switch (request()->route('adapter')) {
             case 'flares':
                 return resolve(FlaresResponse::class);
+            case 'nalo':
+                return resolve(NaloRequest::class);
+           case 'hubtel':
+                return resolve(HubtelRequest::class);
             default:
                 return resolve(TruRouteResponse::class);
         }
@@ -403,7 +411,8 @@ class Subscribe extends Screen
 
 namespace App\Screens;
 
-use Exception;use TNM\USSD\Screen;
+use Exception;
+use TNM\USSD\Screen;
 use TNM\USSD\Exceptions\UssdException;
 
 class ConfirmSubscription extends Screen
