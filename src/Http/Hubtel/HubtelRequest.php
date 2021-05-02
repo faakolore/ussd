@@ -98,7 +98,7 @@ class HubtelRequest implements UssdRequestInterface
      */
     public function getMessage(): string
     {
-        return $this->getType()==Request::INITIAL? $this->getSequence(): $this->request['Message'];
+        return $this->getType() == Request::INITIAL ? $this->getSequence(): $this->request['Message'];
     }
 
 
