@@ -166,7 +166,7 @@ class MakeUssdAdapter extends Command
      */
     private function buildRequest($adapter): string
     {
-        return "case "."'".$adapter."'".":\n return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Request::class);";
+        return "            case "."'".$adapter."'".":\n                return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Request::class);";
     }
 
     /**
@@ -175,6 +175,6 @@ class MakeUssdAdapter extends Command
      */
     private function buildResponse($adapter) :string
     {
-        return "case "."'".$adapter."'".":\n return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Response::class);";
+        return "            case "."'".$adapter."'".":\n                return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Response::class);";
     }
 }
