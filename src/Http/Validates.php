@@ -1,13 +1,13 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
 
 use Exception;
 use Illuminate\Support\Facades\Validator;
-use TNM\USSD\Exceptions\UssdException;
-use TNM\USSD\Exceptions\ValidationException;
+use Faakolore\USSD\Exceptions\UssdException;
+use Faakolore\USSD\Exceptions\ValidationException;
 
 trait Validates
 {

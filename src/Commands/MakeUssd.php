@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
 
@@ -41,7 +41,7 @@ class MakeUssd extends Command
      */
     public function handle()
     {
-        $path = app()->path() . '/Screens';
+        $path = app()->path() . 'USSD/Screens';
         $fullPath = sprintf("%s/%s.php", $path, $this->argument('name'));
 
         if (file_exists($fullPath)) {
@@ -58,7 +58,7 @@ class MakeUssd extends Command
 
     public function getStub()
     {
-        return __DIR__ . '/../stubs/screen.stub';
+        return __DIR__ . '../../stubs/screen.stub';
     }
 
     public function buildContents(): string

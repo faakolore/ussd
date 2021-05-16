@@ -1,9 +1,9 @@
 <?php
 
-namespace TNM\USSD\Observers;
+namespace Faakolore\USSD\Observers;
 
-use TNM\USSD\Models\HistoricalPayload;
-use TNM\USSD\Models\Payload;
+use Faakolore\USSD\Models\HistoricalPayload;
+use Faakolore\USSD\Models\Payload;
 
 class PayloadObserver
 {

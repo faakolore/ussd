@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Test;
+namespace Faakolore\USSD\Test;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -8,9 +8,9 @@ use Mockery;
 use Mockery\LegacyMockInterface;
 use Mockery\MockInterface;
 use Tests\TestCase;
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\TruRoute\TruRouteRequest;
-use TNM\USSD\Screen;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\TruRoute\TruRouteRequest;
+use Faakolore\USSD\Screen;
 
 class ScreenTest extends TestCase
 {

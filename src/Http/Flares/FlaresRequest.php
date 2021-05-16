@@ -1,12 +1,12 @@
 <?php
 
 
-namespace TNM\USSD\Http\Flares;
+namespace Faakolore\USSD\Http\Flares;
 
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\UssdRequestInterface;
-use TNM\USSD\Models\Session;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\UssdRequestInterface;
+use Faakolore\USSD\Models\Session;
 
 class FlaresRequest implements UssdRequestInterface
 {

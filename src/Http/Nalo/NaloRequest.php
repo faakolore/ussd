@@ -1,13 +1,13 @@
 <?php
 
 
-namespace TNM\USSD\Http\Nalo;
+namespace Faakolore\USSD\Http\Nalo;
 
 
 use Illuminate\Support\Str;
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\UssdRequestInterface;
-use TNM\USSD\Models\Session;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\UssdRequestInterface;
+use Faakolore\USSD\Models\Session;
 
 class NaloRequest implements UssdRequestInterface
 {

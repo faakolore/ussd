@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TNM\USSD\Http\TruRoute;
+namespace Faakolore\USSD\Http\TruRoute;
 
 
-use TNM\USSD\Http\UssdRequestInterface;
+use Faakolore\USSD\Http\UssdRequestInterface;
 
 class TruRouteRequest implements UssdRequestInterface
 {

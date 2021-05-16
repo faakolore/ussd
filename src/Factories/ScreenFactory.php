@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TNM\USSD\Factories;
+namespace Faakolore\USSD\Factories;
 
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Screen;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Screen;
 
 abstract class ScreenFactory
 {

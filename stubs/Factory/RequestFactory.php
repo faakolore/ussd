@@ -1,14 +1,14 @@
 <?php
 
 
-namespace TNM\USSD\Factories;
+namespace App\USSD\Factory;
 
 
-use TNM\USSD\Http\Flares\FlaresRequest;
-use TNM\USSD\Http\Hubtel\HubtelRequest;
-use TNM\USSD\Http\Nalo\NaloRequest;
-use TNM\USSD\Http\TruRoute\TruRouteRequest;
-use TNM\USSD\Http\UssdRequestInterface;
+use Faakolore\USSD\Http\Flares\FlaresRequest;
+use Faakolore\USSD\Http\Hubtel\HubtelRequest;
+use Faakolore\USSD\Http\Nalo\NaloRequest;
+use Faakolore\USSD\Http\TruRoute\TruRouteRequest;
+use Faakolore\USSD\Http\UssdRequestInterface;
 
 class RequestFactory
 {

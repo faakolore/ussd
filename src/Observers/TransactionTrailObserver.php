@@ -1,10 +1,10 @@
 <?php
 
-namespace TNM\USSD\Observers;
+namespace Faakolore\USSD\Observers;
 
 
-use TNM\USSD\Models\HistoricalTransactionTrail;
-use TNM\USSD\Models\TransactionTrail;
+use Faakolore\USSD\Models\HistoricalTransactionTrail;
+use Faakolore\USSD\Models\TransactionTrail;
 
 class TransactionTrailObserver
 {

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace TNM\USSD\Screens;
+namespace Faakolore\USSD\Screens;
 
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\Response;
-use TNM\USSD\Screen;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\Response;
+use Faakolore\USSD\Screen;
 
 class Error extends Screen
 {

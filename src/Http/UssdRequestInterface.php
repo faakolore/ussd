@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
 
 interface UssdRequestInterface

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TNM\USSD\Screens;
+namespace Faakolore\USSD\Screens;
 
 
-use TNM\USSD\Screen;
+use Faakolore\USSD\Screen;
 
 class ValidationFailure extends Error
 {

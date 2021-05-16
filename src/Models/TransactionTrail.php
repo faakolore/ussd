@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Models;
+namespace Faakolore\USSD\Models;
 
 class TransactionTrail extends AbstractTransactionTrail
 {

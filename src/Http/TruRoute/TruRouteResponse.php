@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TNM\USSD\Http\TruRoute;
+namespace Faakolore\USSD\Http\TruRoute;
 
 
-use TNM\USSD\Http\UssdResponseInterface;
-use TNM\USSD\Screen;
+use Faakolore\USSD\Http\UssdResponseInterface;
+use Faakolore\USSD\Screen;
 
 class TruRouteResponse implements UssdResponseInterface
 {

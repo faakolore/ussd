@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
 use Illuminate\Routing\Controller as BaseController;
-use TNM\USSD\Exceptions\UssdException;
-use TNM\USSD\Factories\EntryScreenFactory;
+use Faakolore\USSD\Exceptions\UssdException;
+use Faakolore\USSD\Factories\EntryScreenFactory;
 
 class Controller extends BaseController
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
 use \Illuminate\Http\Response as BaseResponse;
 

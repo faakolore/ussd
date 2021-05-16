@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -33,7 +33,7 @@ class Update extends Command
 
     public function handle()
     {
-        $process = new Process(['composer', 'require', 'tnmdev/ussd']);
+        $process = new Process(['composer', 'require', 'faakolore/ussd']);
 
         $process->run(function ($type, $buffer) {
             $this->info($buffer);

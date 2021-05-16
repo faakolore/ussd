@@ -1,13 +1,13 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
-use App\Screens\Welcome;
+use App\USSD\Screens\Welcome;
 use Illuminate\Http\Request as BaseRequest;
-use TNM\USSD\Factories\RequestFactory;
-use TNM\USSD\Models\Session;
-use TNM\USSD\Screen;
+use App\USSD\Factory\RequestFactory;
+use Faakolore\USSD\Models\Session;
+use Faakolore\USSD\Screen;
 
 class Request extends BaseRequest
 {

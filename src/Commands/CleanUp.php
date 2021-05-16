@@ -1,13 +1,13 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
-use TNM\USSD\Models\Payload;
-use TNM\USSD\Models\Session;
-use TNM\USSD\Models\SessionNumber;
-use TNM\USSD\Models\TransactionTrail;
+use Faakolore\USSD\Models\Payload;
+use Faakolore\USSD\Models\Session;
+use Faakolore\USSD\Models\SessionNumber;
+use Faakolore\USSD\Models\TransactionTrail;
 
 class CleanUp extends Command
 {

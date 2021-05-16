@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Models;
+namespace Faakolore\USSD\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

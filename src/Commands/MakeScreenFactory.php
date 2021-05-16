@@ -1,6 +1,6 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
 
@@ -54,7 +54,7 @@ class MakeScreenFactory extends Command
 
     private function getStub()
     {
-        return __DIR__ . '/../stubs/factory.stub';
+        return __DIR__ . '../../stubs/factory.stub';
     }
 
     private function replaceClassName()

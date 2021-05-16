@@ -1,10 +1,10 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 
 use Illuminate\Console\Command;
-use TNM\USSD\Models\TransactionTrail;
+use Faakolore\USSD\Models\TransactionTrail;
 
 class AuditSession extends Command
 {

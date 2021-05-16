@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\USSD\Adapter\{{class}};
+
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\UssdRequestInterface;
+
+
+class {{class}}Request implements UssdRequestInterface
+{
+
+    /**
+     * @var array|mixed
+     */
+    private $request;
+
+
+    /**
+     * {{class}} Request constructor.
+     */
+    public function __construct()
+    {
+        //$this->request = json_decode(request()->getContent(),true);
+    }
+
+    /**
+     * This retrieves the msisdn/mobile number from the request
+     *
+     * @return string
+     */
+    public function getMsisdn(): string
+    {
+        //return $this->request['MSISDN'];
+    }
+
+   /**
+     * This retrieves the session id from the ussd aggregator request
+     * @return string
+     */
+    public function getSession(): string
+    {
+       // return $this->request['SessionId'];
+    }
+
+    /**
+     * @return int
+     */
+    public function getType(): int
+    {
+        // return $this->request['Type'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage(): string
+    {
+        return $this->request['Message'];
+    }
+
+
+}

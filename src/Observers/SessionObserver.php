@@ -1,11 +1,11 @@
 <?php
 
-namespace TNM\USSD\Observers;
+namespace Faakolore\USSD\Observers;
 
 
-use TNM\USSD\Models\HistoricalSession;
-use TNM\USSD\Models\Session;
-use TNM\USSD\Models\SessionNumber;
+use Faakolore\USSD\Models\HistoricalSession;
+use Faakolore\USSD\Models\Session;
+use Faakolore\USSD\Models\SessionNumber;
 
 class SessionObserver
 {

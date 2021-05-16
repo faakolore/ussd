@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Http\USSD\Adapter\{{class}};
+
+use Faakolore\USSD\Http\UssdResponseInterface;
+
+use Faakolore\USSD\Screen;
+
+class {{class}}Response implements UssdResponseInterface
+{
+
+    public function respond(Screen $screen)
+    {
+        return $this->toJson($screen);
+    }
+}

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace TNM\USSD\Factories;
+namespace Faakolore\USSD\Factories;
 
 
-use App\Screens\Welcome;
-use TNM\USSD\Http\Request;
-use TNM\USSD\Screen;
+use App\USSD\Screens\Welcome;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Screen;
 
 class EntryScreenFactory
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
-use TNM\USSD\Models\Session;
+use Faakolore\USSD\Models\Session;
 
 class ListUserTransactions extends Command
 {

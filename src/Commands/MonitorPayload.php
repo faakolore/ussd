@@ -1,10 +1,10 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
-use TNM\USSD\Models\Payload;
-use TNM\USSD\Models\Session;
+use Faakolore\USSD\Models\Payload;
+use Faakolore\USSD\Models\Session;
 
 class MonitorPayload extends Command
 {

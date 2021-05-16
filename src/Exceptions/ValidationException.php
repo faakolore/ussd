@@ -1,9 +1,9 @@
 <?php
 
-namespace TNM\USSD\Exceptions;
+namespace Faakolore\USSD\Exceptions;
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Screens\ValidationFailure;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Screens\ValidationFailure;
 
 class ValidationException extends UssdException
 {

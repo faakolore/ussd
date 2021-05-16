@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TNM\USSD\Exceptions;
+namespace Faakolore\USSD\Exceptions;
 
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Screens\Error;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Screens\Error;
 
 class UssdException extends \Exception
 {

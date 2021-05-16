@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "Faakolore Developers",
-            "email": "agronovagh@gmail.com"
+            "email": "support@faakolore.com"
         }
     ],
     "minimum-stability": "dev",
@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "TNM\\USSD\\" : "src/"
+            "Faakolore\\USSD\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TNM\\USSD\\Test\\": "tests"
+            "Faakolore\\USSD\\Test\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "TNM\\USSD\\UssdServiceProvider"
+                "Faakolore\\USSD\\UssdServiceProvider"
             ]
         }
     }

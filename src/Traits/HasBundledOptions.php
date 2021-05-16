@@ -1,7 +1,7 @@
 <?php
 
 
-namespace TNM\USSD\Traits;
+namespace Faakolore\USSD\Traits;
 
 
 use Illuminate\Support\Arr;

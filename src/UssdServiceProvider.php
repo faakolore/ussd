@@ -1,24 +1,25 @@
 <?php
 
-namespace TNM\USSD;
+namespace Faakolore\USSD;
 
+use Faakolore\USSD\Commands\MakeUssdAdapter;
 use Illuminate\Support\ServiceProvider as Provider;
-use TNM\USSD\Commands\AuditSession;
-use TNM\USSD\Commands\CleanUp;
-use TNM\USSD\Commands\Install;
-use TNM\USSD\Commands\ListUserTransactions;
-use TNM\USSD\Commands\MakeScreenFactory;
-use TNM\USSD\Commands\MakeUssd;
-use TNM\USSD\Commands\MonitorPayload;
-use TNM\USSD\Commands\Update;
-use TNM\USSD\Models\Payload;
-use TNM\USSD\Models\Session;
-use TNM\USSD\Models\SessionNumber;
-use TNM\USSD\Models\TransactionTrail;
-use TNM\USSD\Observers\PayloadObserver;
-use TNM\USSD\Observers\SessionNumberObserver;
-use TNM\USSD\Observers\SessionObserver;
-use TNM\USSD\Observers\TransactionTrailObserver;
+use Faakolore\USSD\Commands\AuditSession;
+use Faakolore\USSD\Commands\CleanUp;
+use Faakolore\USSD\Commands\Install;
+use Faakolore\USSD\Commands\ListUserTransactions;
+use Faakolore\USSD\Commands\MakeScreenFactory;
+use Faakolore\USSD\Commands\MakeUssd;
+use Faakolore\USSD\Commands\MonitorPayload;
+use Faakolore\USSD\Commands\Update;
+use Faakolore\USSD\Models\Payload;
+use Faakolore\USSD\Models\Session;
+use Faakolore\USSD\Models\SessionNumber;
+use Faakolore\USSD\Models\TransactionTrail;
+use Faakolore\USSD\Observers\PayloadObserver;
+use Faakolore\USSD\Observers\SessionNumberObserver;
+use Faakolore\USSD\Observers\SessionObserver;
+use Faakolore\USSD\Observers\TransactionTrailObserver;
 
 class UssdServiceProvider extends Provider
 {
@@ -39,6 +40,7 @@ class UssdServiceProvider extends Provider
         $this->publishes([
             __DIR__ . '/config/ussd.php' => config_path('ussd.php'),
         ]);
+
 
         Payload::observe(PayloadObserver::class);
         TransactionTrail::observe(TransactionTrailObserver::class);
@@ -62,6 +64,7 @@ class UssdServiceProvider extends Provider
                 ListUserTransactions::class,
                 MonitorPayload::class,
                 Update::class,
+                MakeUssdAdapter::class,
             ]);
         }
     }

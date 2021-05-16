@@ -1,16 +1,16 @@
 <?php
 
 
-namespace TNM\USSD;
+namespace Faakolore\USSD;
 
 
 use Illuminate\Support\Collection;
-use TNM\USSD\Factories\ResponseFactory;
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\Response;
-use TNM\USSD\Models\TransactionTrail;
-use TNM\USSD\Screens\Error;
-use TNM\USSD\Screens\Welcome;
+use App\USSD\Factory\ResponseFactory;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\Response;
+use Faakolore\USSD\Models\TransactionTrail;
+use Faakolore\USSD\Screens\Error;
+use Faakolore\USSD\Screens\Welcome;
 
 abstract class Screen
 {

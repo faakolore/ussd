@@ -1,8 +1,9 @@
 <?php
 
-namespace TNM\USSD\Commands;
+namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
 
 class Install extends Command
@@ -38,6 +39,9 @@ class Install extends Command
      */
     public function handle()
     {
+        (new Filesystem)->ensureDirectoryExists(app_path('USSD/Factory'));
+        (new Filesystem)->copyDirectory(__DIR__.'../../stubs/Factory', app_path('USSD/Factory'));
+
         Artisan::call('migrate');
         Artisan::call('make:ussd Welcome');
         $this->info('USSD application installed successfully');

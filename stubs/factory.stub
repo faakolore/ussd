@@ -4,8 +4,8 @@
 namespace App\Factories;
 
 
-use TNM\USSD\Factories\ScreenFactory;
-use TNM\USSD\Http\Request;
+use Faakolore\USSD\Factories\ScreenFactory;
+use Faakolore\USSD\Http\Request;
 
 class {{class}} extends ScreenFactory
 {

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace TNM\USSD\Http\Hubtel;
+namespace Faakolore\USSD\Http\Hubtel;
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\UssdResponseInterface;
-use TNM\USSD\Screen;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\UssdResponseInterface;
+use Faakolore\USSD\Screen;
 
 class HubtelResponse implements UssdResponseInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TNM\USSD\Http\Hubtel;
+namespace Faakolore\USSD\Http\Hubtel;
 
-use TNM\USSD\Http\Request;
-use TNM\USSD\Http\UssdRequestInterface;
+use Faakolore\USSD\Http\Request;
+use Faakolore\USSD\Http\UssdRequestInterface;
 
 
 class HubtelRequest implements UssdRequestInterface

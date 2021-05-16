@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => 'TNM\USSD\Http', 'prefix' => 'api/ussd'], function () {
+Route::group(['namespace' => 'Faakolore\USSD\Http', 'prefix' => 'api/ussd'], function () {
     Route::post('/{adapter?}', ['uses' => 'Controller']);
 });
 

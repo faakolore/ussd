@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TNM\USSD\Http;
+namespace Faakolore\USSD\Http;
 
 
-use TNM\USSD\Screen;
+use Faakolore\USSD\Screen;
 
 interface UssdResponseInterface
 {

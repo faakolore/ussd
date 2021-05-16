@@ -3866,7 +3866,7 @@
             "time": "2020-07-13T06:12:54+00:00"
         },
         {
-            "name": "tnmdev/ussd-simulator",
+            "name": "Faakoloredev/ussd-simulator",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3884,13 +3884,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "TNM\\UssdSimulator\\SimulatorServiceProvider"
+                        "Faakolore\\UssdSimulator\\SimulatorServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "TNM\\UssdSimulator\\": "src/"
+                    "Faakolore\\UssdSimulator\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3899,11 +3899,11 @@
             ],
             "authors": [
                 {
-                    "name": "TNM Developers",
-                    "email": "developers@tnm.co.mw"
+                    "name": "Faakolore Developers",
+                    "email": "developers@Faakolore.co.mw"
                 }
             ],
-            "description": "A simulator for TNM USSD applications",
+            "description": "A simulator for Faakolore USSD applications",
             "support": {
                 "issues": "https://github.com/saulchelewani/ussd-simulator/issues",
                 "source": "https://github.com/saulchelewani/ussd-simulator/tree/master"
@@ -4129,7 +4129,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "tnmdev/ussd-simulator": 20
+        "Faakoloredev/ussd-simulator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
