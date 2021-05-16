@@ -4,7 +4,6 @@ namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class MakeUssdAdapter extends Command
@@ -40,7 +39,7 @@ class MakeUssdAdapter extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -79,9 +78,9 @@ class MakeUssdAdapter extends Command
 
     /**
      * @param string $type
-     * @return array
+     * @return string
      */
-    public function buildContents(string $type): array
+    public function buildContents(string $type): string
     {
         return $this->setContents($type)->replaceClassName()->replaceMessage()->build();
     }
@@ -112,13 +111,16 @@ class MakeUssdAdapter extends Command
      */
     private function setContents(string $type): self
     {
-        $type === 'request'?
-                $this->contents = Arr::add($this->contents,'request',file_get_contents($this->getRequestStub()))
-                :    $this->contents = Arr::add($this->contents,'response',file_get_contents($this->getResponseStub()));
+        $type == 'request'?
+                $this->contents = file_get_contents($this->getRequestStub())
+                :    $this->contents = file_get_contents($this->getResponseStub());
         return $this;
     }
 
-    private function build(): array
+    /**
+     * @return string
+     */
+    private function build(): string
     {
         return $this->contents;
     }
@@ -133,18 +135,28 @@ class MakeUssdAdapter extends Command
         $adapter = Str::lower($this->argument('name'));
 
         $requestPath = app_path('USSD/Factory/RequestFactory.php');
-        $responsePath = app_path('USSD/Factory/ResourceFactory.php');
+        $responsePath = app_path('USSD/Factory/ResponseFactory.php');
 
         $requestFactory = file_get_contents($requestPath);
         $responseFactory = file_get_contents($responsePath);
 
-        $searchField =Str::before(Str::after($requestFactory, 'switch (request()->route("adapter")) {'),'default:');
+        $searchField =Str::before(Str::after($requestFactory, "switch (request()->route('adapter')) {"),'default:');
+        $searchResponseField =Str::before(Str::after($responseFactory, "switch (request()->route('adapter')) {"),'default:');
 
-        $searchResponseField =Str::before(Str::after($responseFactory, 'switch (request()->route("adapter")) {'),'default:');
-
+        $after = "switch (request()->route('adapter')) {";
         if (! Str::contains($searchField, $adapter)){
-            file_put_contents($requestPath,$this->buildRequest($adapter));
-            file_put_contents($responsePath,$this->buildResponse($adapter));
+            $modifiedRequest = str_replace(
+                $after,
+                $after.PHP_EOL.$this->buildRequest($adapter),
+                $requestFactory
+            );
+            $modifiedResponse = str_replace(
+                $after,
+                $after.PHP_EOL.$this->buildResponse($adapter),
+                $responseFactory
+            );
+            file_put_contents($requestPath,$modifiedRequest);
+            file_put_contents($responsePath,$modifiedResponse);
         }
     }
 
@@ -154,7 +166,7 @@ class MakeUssdAdapter extends Command
      */
     private function buildRequest($adapter): string
     {
-        return "case ".$adapter.":\n return resolve(".app_path('Http/USSD/Adapter/').$this->argument('name')."Request::class);";
+        return "case "."'".$adapter."'".":\n return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Request::class);";
     }
 
     /**
@@ -163,6 +175,6 @@ class MakeUssdAdapter extends Command
      */
     private function buildResponse($adapter) :string
     {
-        return "case ".$adapter.":\n return resolve(".app_path('Http/USSD/Adapter/').$this->argument('name')."Response::class);";
+        return "case "."'".$adapter."'".":\n return resolve(\App\Http\USSD\Adapter\\".$this->argument('name')."\\".$this->argument('name')."Response::class);";
     }
 }
