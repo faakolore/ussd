@@ -3,6 +3,7 @@
 namespace Faakolore\USSD\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,7 @@ class MakeUssdAdapter extends Command
      *
      * @var string
      */
-    protected $signature = 'make:ussd-adapter {name}';
+    protected $signature = 'make:ussd-adapter {name} {--message=}';
 
     /**
      * The console command description.
@@ -43,35 +44,51 @@ class MakeUssdAdapter extends Command
      */
     public function handle()
     {
-        $path = app()->path() . 'Http/USSD/Adapter/'.$this->argument('name');
-        $fullPath = sprintf("%s/%s.php", $path, $this->argument('name'));
+        $path = app_path('Http/USSD/Adapter/'.$this->argument('name'));
+        $requestFullPath = sprintf("%s/%s.php", $path, $this->argument('name').'Request');
+        $responseFullPath = sprintf("%s/%s.php", $path, $this->argument('name').'Response');
 
-        if (file_exists($fullPath)) {
+        if (file_exists($requestFullPath) || file_exists($responseFullPath)) {
             $this->error('Adapter already exists!');
             die;
         }
 
-        if (!is_dir($path)) mkdir($path);
+        (new Filesystem)->ensureDirectoryExists($path);
 
-        $this->writeToFile($fullPath);
+        $this->writeToFile($requestFullPath,'request');
+        $this->writeToFile($responseFullPath,'response');
         $this->writeToFactory();
         $this->info('Created adapter successfully.');
     }
 
+    /**
+     * @return string
+     */
     public function getRequestStub(): string
     {
-        return __DIR__ . '../../stubs/Adapter/request.stub';
+        return __DIR__ . '/../../stubs/Adapter/request.stub';
     }
+
+    /**
+     * @return string
+     */
     public function getResponseStub(): string
     {
-        return __DIR__ . '../../stubs/Adapter/response.stub';
+        return __DIR__ . '/../../stubs/Adapter/response.stub';
     }
 
-    public function buildContents(): array
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function buildContents(string $type): array
     {
-        return $this->setContents()->replaceClassName()->replaceMessage()->build();
+        return $this->setContents($type)->replaceClassName()->replaceMessage()->build();
     }
 
+    /**
+     * @return $this
+     */
     private function replaceMessage(): self
     {
         if ($this->option("message"))
@@ -80,16 +97,24 @@ class MakeUssdAdapter extends Command
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     private function replaceClassName(): self
     {
         $this->contents = str_replace('{{class}}', $this->argument('name'), $this->contents);
         return $this;
     }
 
-    private function setContents(): self
+    /**
+     * @param string $type
+     * @return $this
+     */
+    private function setContents(string $type): self
     {
-        $this->contents = Arr::add($this->contents,'request',file_get_contents($this->getRequestStub()));
-        $this->contents = Arr::add($this->contents,'response',file_get_contents($this->getResponseStub()));
+        $type === 'request'?
+                $this->contents = Arr::add($this->contents,'request',file_get_contents($this->getRequestStub()))
+                :    $this->contents = Arr::add($this->contents,'response',file_get_contents($this->getResponseStub()));
         return $this;
     }
 
@@ -98,9 +123,9 @@ class MakeUssdAdapter extends Command
         return $this->contents;
     }
 
-    private function writeToFile(string $fullPath): void
+    private function writeToFile(string $fullPath, string $type): void
     {
-        file_put_contents($fullPath, $this->buildContents());
+        file_put_contents($fullPath, $this->buildContents($type));
     }
 
     private function writeToFactory()
